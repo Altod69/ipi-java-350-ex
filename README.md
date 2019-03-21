@@ -83,7 +83,7 @@ Commencer par faire une branche `evaluation` à partir de votre branche `master`
 ## Tests d'intégration
 
 - Tester sans dépendance à la BDD la méthode `calculPerformanceCommercial` d'`EmployeService`
-- Tester de manière intégrée une cas nominal de la méthode précédente
+- Tester de manière intégrée un cas nominal de la méthode précédente
 - Tester de manière intégrée la méthode d'`EmployeRepository` `avgPerformanceWhereMatriculeStartsWith`
 
 ## Autres
