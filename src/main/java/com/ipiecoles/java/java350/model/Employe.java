@@ -121,7 +121,9 @@ public class Employe {
     }
 
     //Augmenter salaire
-    //public void augmenterSalaire(double pourcentage){}
+    public void augmenterSalaire(double pourcentage){
+    	this.salaire = (1 + pourcentage/100)*this.getSalaire();
+    }
 
     public Long getId() {
         return id;
