@@ -37,7 +37,7 @@ public class EmployeTest {
     	}
     	
     	//Then
-    	Assertions.assertEquals(e.getSalaire().doubleValue(), salaireAugmente.doubleValue());
+    	Assertions.assertEquals(5, salaireAugmente.doubleValue());
     }
 
     @Test
