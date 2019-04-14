@@ -24,10 +24,20 @@ public class EmployeTest {
     	e.augmenterSalaire(pourcentage);
     	
     	//When
-    	Double salaireAugmente = (1 + pourcentage/100)*salaire;
+    	Double salaireAugmente = 0.0;
+    	
+    	if(pourcentage == 0) {
+    		salaireAugmente = salaire;
+    	}
+    	else if(salaire == 0) {
+    		salaireAugmente = 0.0;
+    	}
+    	else {
+    		salaireAugmente = (1 + pourcentage/100)*salaire;
+    	}
     	
     	//Then
-    	Assertions.assertEquals(e.getSalaire().doubleValue(), salaireAugmente.doubleValue());
+    	Assertions.assertEquals(e.getSalaire(), salaireAugmente);
     }
 
     @Test
