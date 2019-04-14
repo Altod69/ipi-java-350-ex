@@ -19,15 +19,18 @@ public class EmployeTest {
     })
     public void augmenterSalaireTest(Double salaire, Double pourcentage) {
     	//Given
+		Double resultat;
     	Employe e = new Employe();
     	e.setSalaire(salaire);
     	e.augmenterSalaire(pourcentage);
     	
     	//When
-    	Double salaireAugmente = e.getSalaire() - ((1 + pourcentage/100)*salaire);
+    	Double salaireAugmente = (1 + pourcentage/100)*salaire;
+    	
+    	resultat = salaireAugmente - e.getSalaire();
     	
     	//Then
-    	Assertions.assertEquals(0, salaireAugmente.doubleValue());
+    	Assertions.assertEquals(0, resultat.doubleValue());
     }
 
     @Test
