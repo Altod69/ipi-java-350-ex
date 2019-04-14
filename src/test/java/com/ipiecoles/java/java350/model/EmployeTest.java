@@ -11,15 +11,14 @@ public class EmployeTest {
 	
 	@ParameterizedTest
     @CsvSource({
-            "1000.0, 0.0",
-            "0.0, 10.0",
-            "0.0, 0.0",
-            "1000.0, 10.0",
-            "1000, 10.0",
-            "1000.0, 10",
-            "1000.0, 110"
+            "1000.0, 0.0, 0",
+            "0.0, 10.0, 0",
+            "0.0, 0.0, 0",
+            "1000.0, 10.0, 1100.0",
+            "1000.0, 5, 1050.0",
+            "1000.0, 110, 2100.0"
     })
-    public void augmenterSalaireTest(Double salaire, Double pourcentage) throws Exception {
+    public void augmenterSalaireTest(Double salaire, Double pourcentage, Double resultatAttendu) throws Exception {
     	//Given
     	Employe e = new Employe();
     	e.setSalaire(salaire);
@@ -35,11 +34,11 @@ public class EmployeTest {
     		throw new Exception("Un salaire ne peut être égale à 0");
     	}
     	else {
-    		salaireAugmente = (1 + pourcentage/100)*salaire;
+    		salaireAugmente = e.getSalaire();
     	}
     	
     	//Then
-    	Assertions.assertEquals(salaireAugmente, e.getSalaire());
+    	Assertions.assertEquals(resultatAttendu, salaireAugmente);
     }
 
     @Test
