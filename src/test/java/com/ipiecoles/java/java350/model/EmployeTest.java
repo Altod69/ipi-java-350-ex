@@ -16,8 +16,10 @@ public class EmployeTest {
             "0.0, 0.0",
             "1000.0, 10.0",
             "1000, 10.0",
+            "1000.0, 10",
+            "1000.0, 110"
     })
-    public void augmenterSalaireTest(Double salaire, Double pourcentage) {
+    public void augmenterSalaireTest(Double salaire, Double pourcentage) throws Exception {
     	//Given
     	Employe e = new Employe();
     	e.setSalaire(salaire);
@@ -27,10 +29,10 @@ public class EmployeTest {
     	Double salaireAugmente = 0.0;
     	
     	if(pourcentage == 0) {
-    		salaireAugmente = salaire;
+    		throw new Exception("Un pourcentage ne peut être égale à 0");
     	}
     	else if(salaire == 0) {
-    		salaireAugmente = 0.0;
+    		throw new Exception("Un salaire ne peut être égale à 0");
     	}
     	else {
     		salaireAugmente = (1 + pourcentage/100)*salaire;
