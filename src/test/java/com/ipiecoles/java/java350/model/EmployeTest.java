@@ -11,13 +11,11 @@ public class EmployeTest {
 	
 	@ParameterizedTest
     @CsvSource({
-            "null, 10.0",
-            "1000.0, null",
-            "null, null",
             "1000.0, 0.0",
             "0.0, 10.0",
             "0.0, 0.0",
-            "1000.0, 10.0"
+            "1000.0, 10.0",
+            "1000, 10.0",
     })
     public void augmenterSalaireTest(Double salaire, Double pourcentage) {
     	//Given
