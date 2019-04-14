@@ -9,7 +9,30 @@ import java.time.LocalDate;
 
 public class EmployeTest {
 
-    @Test
+	@ParameterizedTest
+    @CsvSource({
+            "null, 10.0",
+            "1000.0, null",
+            "null, null",
+            "1000.0, 0.0",
+            "0.0, 10.0",
+            "0.0, 0.0",
+            "1000.0, 10.0"
+    })
+    public void augmenterSalaireTest(Double salaire, Double pourcentage) {
+    	//Given
+    	Employe e = new Employe();
+    	e.setSalaire(salaire);
+    	e.augmenterSalaire(pourcentage);
+    	
+    	//When
+    	Double salaireAugmente = e.getSalaire();
+    	
+    	//Then
+    	Assertions.assertEquals(0, salaireAugmente.doubleValue());
+    }
+	
+	@Test
     public void getNombreAnneeAncienneteNow(){
         //Given
         Employe e = new Employe();
