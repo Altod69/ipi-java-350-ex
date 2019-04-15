@@ -74,7 +74,7 @@ public class Employe {
         return getNbRtt(LocalDate.now());
     }
 
-    public Integer getNbRtt(LocalDate d){
+	public Integer getNbRtt(LocalDate d){
     	//Nombre de jours dans l'année. Si l'année est bissextile, i1 vaut 365 sinon vaut 366. 
     	//ERREUR: L'ANNEE BISSEXTILE VAUT 366 et non 365 INVERSION
         int i1 = d.isLeapYear() ? 365 : 366;
