@@ -75,14 +75,41 @@ public class Employe {
     }
 
     public Integer getNbRtt(LocalDate d){
+    	//Nombre de jours dans l'année. Si l'année est bissextile, i1 vaut 365 sinon vaut 366. 
+    	//ERREUR: L'ANNEE BISSEXTILE VAUT 366 et non 365 INVERSION
         int i1 = d.isLeapYear() ? 365 : 366;
+        
+        //Nombres de jours non travaillés sur l'année(samedi et dimanche)
         int var = 104;
+        
+        
         switch (LocalDate.of(d.getYear(),1,1).getDayOfWeek()){
+        	
+        	//Si c'est une année bissextile, ajoute 1 aux jours non travaillés si le premier jour de l'année est un jeudi
             case THURSDAY: if(d.isLeapYear()) var =  var + 1; break;
+            
+            //Si c'est une année bissextile, ajoute 2 aux jours non travaillés si le premier jour de l'année est un vendredi
+            //Si l'année n'est pas bissextile, ajoute 1
             case FRIDAY: if(d.isLeapYear()) var =  var + 2; else var =  var + 1;
+            
+            //Ajoute 1 au aux jours non travaillés si le premier jour de l'année est un samedi.
             case SATURDAY: var = var + 1; break;
+            
+            default: var = 104;
         }
+        
+        //Récupère la liste des jours fériés pour l'année en cours. La liste est paramétrée dans la classe Entreprise.
+        //Parcours la liste de jour fériés. Ajoute un jour à monInt pour chaque jour férié n'étant pas un samedi ou un Dimanche
         int monInt = (int) Entreprise.joursFeries(d).stream().filter(localDate -> localDate.getDayOfWeek().getValue() <= DayOfWeek.FRIDAY.getValue()).count();
+        
+        //Retourne: 
+        //Le nombre de jour de l'année("i1") 
+        //- plafond max forfait jour(nombre de jour obligatoirement travaillés par le salarié)
+        //- var(??)
+        //- nombres de congés
+        //- nombre de jours fériés comptabilisés(tombant sur un jour ouvré,"monInt")
+        //multiplié par la valeur de temps partiel du salarié
+        //Math.ceil arrondi le résultat de la multiplication à l'entier supérieur
         return (int) Math.ceil((i1 - Entreprise.NB_JOURS_MAX_FORFAIT - var - Entreprise.NB_CONGES_BASE - monInt) * tempsPartiel);
     }
 
@@ -122,7 +149,7 @@ public class Employe {
 
     //Augmenter salaire
     public void augmenterSalaire(double pourcentage){
-    	this.salaire = (1 + pourcentage/100)*this.getSalaire();
+    	this.salaire = (1 + (pourcentage/100))*this.getSalaire();
     }
 
     public Long getId() {

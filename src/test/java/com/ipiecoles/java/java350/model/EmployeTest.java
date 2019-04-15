@@ -31,6 +31,21 @@ public class EmployeTest {
     	//Then
     	Assertions.assertEquals(resultatAttendu, salaireAugmente);
     }
+	
+	@ParameterizedTest
+    @CsvSource({
+            "LocalDate.now().minus(1L)",
+            "LocalDate.now().minus(2L)",
+            "LocalDate.now().minus(3L)"
+    })
+	public void getNbRttTest(LocalDate anneeAtester) {
+		//Given
+		Employe e = new Employe();
+		//When
+		Integer nbRtt = e.getNbRtt();
+		//Then
+		Assertions.assertEquals(0, nbRtt.intValue());
+	}
 
     @Test
     public void getNombreAnneeAncienneteNow(){
