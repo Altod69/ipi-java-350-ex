@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class EmployeTest {
 	
@@ -34,15 +35,18 @@ public class EmployeTest {
 	
 	@ParameterizedTest
     @CsvSource({
-            "LocalDate.now().minus(1L)",
-            "LocalDate.now().minus(2L)",
-            "LocalDate.now().minus(3L)"
+            "1",
+            "2",
+            "3",
+            "4"
     })
-	public void getNbRttTest(LocalDate anneeAtester) {
+	public void getNbRttTest(long selecteurAnnee) {
 		//Given
 		Employe e = new Employe();
+		LocalDate anneeAtester = LocalDate.now().minusYears(selecteurAnnee);
+		
 		//When
-		Integer nbRtt = e.getNbRtt();
+		Integer nbRtt = e.getNbRtt(anneeAtester);
 		//Then
 		Assertions.assertEquals(0, nbRtt.intValue());
 	}
