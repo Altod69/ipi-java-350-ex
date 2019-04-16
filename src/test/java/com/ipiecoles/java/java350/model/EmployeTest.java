@@ -35,18 +35,17 @@ public class EmployeTest {
 	
 	@ParameterizedTest
     @CsvSource({
-            "1",
-            "2",
-            "3",
-            "4"
+            "2019-01-01",
+            "2018-01-01",
+            "2017-01-01",
+            "2016-01-01"
     })
-	public void getNbRttTest(long selecteurAnnee) {
+	public void getNbRttTest(LocalDate selecteurAnnee) {
 		//Given
 		Employe e = new Employe();
-		LocalDate anneeAtester = LocalDate.now().minusYears(selecteurAnnee);
 		
 		//When
-		Integer nbRtt = e.getNbRtt(anneeAtester);
+		Integer nbRtt = e.getNbRtt(selecteurAnnee);
 		//Then
 		Assertions.assertEquals(0, nbRtt.intValue());
 	}
