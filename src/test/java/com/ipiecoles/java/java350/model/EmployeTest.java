@@ -45,6 +45,7 @@ public class EmployeTest {
 		Employe e = new Employe("John","Doe", "", LocalDate.now(), Entreprise.SALAIRE_BASE, null, 1.0);
 		//When
 		Integer nbRtt = e.getNbRtt(LocalDate.now().minusYears(selecteurAnnee));
+		System.out.println(LocalDate.now().minusYears(selecteurAnnee));
 		//Then
 		Assertions.assertEquals(0, nbRtt.intValue());
 	}
