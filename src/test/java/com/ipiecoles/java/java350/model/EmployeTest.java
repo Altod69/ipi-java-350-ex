@@ -35,21 +35,21 @@ public class EmployeTest {
 	
 	@ParameterizedTest
     @CsvSource({
-            "2020, 1.0",
-            "2019, 1.0",
-            "2018, 1.0",
-            "2017, 1.0",
-            "2020, 0.5",
-            "2019, 0.5",
-            "2018, 0.5",
-            "2017, 0.5"
+            "1, 1.0",
+            "2, 1.0",
+            "3, 1.0",
+            "4, 1.0",
+            "1, 0.5",
+            "2, 0.5",
+            "3, 0.5",
+            "4, 2.0"
     })
-	public void getNbRttTest(Integer selecteurAnnee, Double tempsPartiel) {
+	public void getNbRttTest(Long selecteurAnnee, Double tempsPartiel) {
 		//Given
 		Employe e = new Employe();
 		e.setTempsPartiel(tempsPartiel);
 		//When
-		Integer nbRtt = e.getNbRtt(LocalDate.of(selecteurAnnee, 1, 1));
+		Integer nbRtt = e.getNbRtt(LocalDate.now().plusYears(selecteurAnnee));
 		//Then
 		Assertions.assertEquals(0, nbRtt.intValue());
 	}
