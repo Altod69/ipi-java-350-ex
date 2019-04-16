@@ -92,7 +92,7 @@ public class Employe {
             //Si l'année n'est pas bissextile, ajoute 1
             case FRIDAY: if(d.isLeapYear()) var =  var + 2; else var =  var + 1;
             
-            //Ajoute 1 au aux jours non travaillés si le premier jour de l'année est un samedi.
+            //Ajoute 1 aux jours non travaillés si le premier jour de l'année est un samedi.
             case SATURDAY: var = var + 1; break;
             
             default: var = 104;

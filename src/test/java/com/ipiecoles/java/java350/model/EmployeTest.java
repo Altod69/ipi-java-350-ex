@@ -42,7 +42,7 @@ public class EmployeTest {
     })
 	public void getNbRttTest(LocalDate selecteurAnnee) {
 		//Given
-		Employe e = new Employe();
+		Employe e = new Employe("John","Doe", "", LocalDate.now(), Entreprise.SALAIRE_BASE, null, 1.0);
 		
 		//When
 		Integer nbRtt = e.getNbRtt(selecteurAnnee);
