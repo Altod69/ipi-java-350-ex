@@ -86,15 +86,25 @@ public class Employe {
         switch (LocalDate.of(d.getYear(),1,1).getDayOfWeek()){
         	
         	//Si c'est une année bissextile, ajoute 1 aux jours non travaillés si le premier jour de l'année est un jeudi
-            case THURSDAY: if(d.isLeapYear()) nbJoursNonOuvres =  nbJoursNonOuvres + 1; break;
+            case THURSDAY: 
+            	if(d.isLeapYear()) {
+            		nbJoursNonOuvres =  nbJoursNonOuvres + 1;
+            	}
+            break;
             
             //Si c'est une année bissextile, ajoute 2 aux jours non travaillés si le premier jour de l'année est un vendredi
             //Si l'année n'est pas bissextile, ajoute 1
-            case FRIDAY: if(d.isLeapYear()) nbJoursNonOuvres =  nbJoursNonOuvres + 2; else nbJoursNonOuvres =  nbJoursNonOuvres + 1;
-            
+            case FRIDAY: 
+            	if(d.isLeapYear()) {
+            		nbJoursNonOuvres =  nbJoursNonOuvres + 2;
+            	}else {
+            		nbJoursNonOuvres =  nbJoursNonOuvres + 1;
+            	}
+            break;
             //Ajoute 1 aux jours non travaillés si le premier jour de l'année est un samedi.
-            case SATURDAY: nbJoursNonOuvres = nbJoursNonOuvres + 1; break;
-            
+            case SATURDAY: 
+            	nbJoursNonOuvres = nbJoursNonOuvres + 1; 
+            break;
             default: nbJoursNonOuvres = 104;
         }
         

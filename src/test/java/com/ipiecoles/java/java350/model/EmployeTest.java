@@ -43,7 +43,7 @@ public class EmployeTest {
         	"2021, 1.0, 10",
         	//annee , annee standard debutant un samedi, temps plein, 10 Rtt attendus
             "2022, 1.0, 10",
-        	//annee XXXX, annee standard, temps plein, 8 Rtt attendus
+        	//annee 2019, annee standard, temps plein, 8 Rtt attendus
             "2019, 1.0, 8"
     })
 	public void getNbRttTest(Integer selecteurAnnee, Double tempsPartiel, Integer resultatAttendu) {
