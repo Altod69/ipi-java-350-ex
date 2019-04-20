@@ -35,14 +35,30 @@ public class EmployeTest {
 	
 	@ParameterizedTest
     @CsvSource({
-            "1, 1.0, 10",
-            "2, 1.0, 11",
+    		//annee 2020 bissextile, temps plein
+    		"1, 1.0, 10",
+    		//annee 2021 temps plein
+        	"2, 1.0, 10",
+        	//annee 2022 temps plein
             "3, 1.0, 10",
+            //annee 2023 temps plein
             "4, 1.0, 9",
+            //annee 2024 bissextile temps plein
+            "5, 1.0, 9",
+            //annee 2025 temps plein
+            "6, 1.0, 8",
+            //annee 2020 bissextile, mi-temps
             "1, 0.5, 5",
+            //annee 2021, mi-temps
             "2, 0.5, 6",
+            //annee 2022, mi-temps
             "3, 0.5, 5",
-            "4, 2.0, 18"
+            //annee 2023, mi-temps
+            "4, 0.5, 5",
+            //annee 2024 bissextile, mi-temps
+            "5, 0.5, 5",
+            //annee 2025, mi-temps
+            "6, 0.5, 4"
     })
 	public void getNbRttTest(Long selecteurAnnee, Double tempsPartiel, Integer resultatAttendu) {
 		//Given

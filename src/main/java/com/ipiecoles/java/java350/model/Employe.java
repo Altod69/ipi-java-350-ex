@@ -243,7 +243,11 @@ public class Employe {
     }
 
     public void setTempsPartiel(Double tempsPartiel) {
-        this.tempsPartiel = tempsPartiel;
+        if(tempsPartiel > 1.0) {
+        	this.tempsPartiel = 1.0;
+        }else {
+        	this.tempsPartiel = tempsPartiel;
+        }    	
     }
 
     @Override
