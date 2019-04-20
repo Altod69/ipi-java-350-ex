@@ -42,12 +42,12 @@ public class EmployeTest {
         	//annee 2022 temps plein
             "2021, 1.0, 10"
     })
-	public void getNbRttTest(LocalDate selecteurAnnee, Double tempsPartiel, Integer resultatAttendu) {
+	public void getNbRttTest(Integer selecteurAnnee, Double tempsPartiel, Integer resultatAttendu) {
 		//Given
 		Employe e = new Employe();
 		e.setTempsPartiel(tempsPartiel);   
 		//When
-		Integer nbRtt = e.getNbRtt(selecteurAnnee);
+		Integer nbRtt = e.getNbRtt(LocalDate.of(selecteurAnnee, 1, 1));
 		//Then
 		Assertions.assertEquals(resultatAttendu, nbRtt);
 	}
