@@ -35,14 +35,14 @@ public class EmployeTest {
 	
 	@ParameterizedTest
     @CsvSource({
-            "1, 1.0, 11",
+            "1, 1.0, 10",
             "2, 1.0, 11",
-            "3, 1.0, 11",
-            "4, 1.0, 11",
-            "1, 0.5, 11",
-            "2, 0.5, 11",
-            "3, 0.5, 11",
-            "4, 2.0, 11"
+            "3, 1.0, 10",
+            "4, 1.0, 9",
+            "1, 0.5, 5",
+            "2, 0.5, 6",
+            "3, 0.5, 5",
+            "4, 2.0, 18"
     })
 	public void getNbRttTest(Long selecteurAnnee, Double tempsPartiel, Integer resultatAttendu) {
 		//Given
