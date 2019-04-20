@@ -35,23 +35,23 @@ public class EmployeTest {
 	
 	@ParameterizedTest
     @CsvSource({
-            "1, 1.0",
-            "2, 1.0",
-            "3, 1.0",
-            "4, 1.0",
-            "1, 0.5",
-            "2, 0.5",
-            "3, 0.5",
-            "4, 2.0"
+            "1, 1.0, 11",
+            "2, 1.0, 11",
+            "3, 1.0, 11",
+            "4, 1.0, 11",
+            "1, 0.5, 11",
+            "2, 0.5, 11",
+            "3, 0.5, 11",
+            "4, 2.0, 11"
     })
-	public void getNbRttTest(Long selecteurAnnee, Double tempsPartiel) {
+	public void getNbRttTest(Long selecteurAnnee, Double tempsPartiel, Integer resultatAttendu) {
 		//Given
 		Employe e = new Employe();
-		e.setTempsPartiel(tempsPartiel);
+		e.setTempsPartiel(tempsPartiel);   
 		//When
 		Integer nbRtt = e.getNbRtt(LocalDate.now().plusYears(selecteurAnnee));
 		//Then
-		Assertions.assertEquals(0, nbRtt.intValue());
+		Assertions.assertEquals(resultatAttendu, nbRtt);
 	}
 
     @Test
