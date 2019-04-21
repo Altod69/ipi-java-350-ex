@@ -50,15 +50,15 @@ public class EmployeTest {
         	//annee 2019, annee standard, temps plein, 8 Rtt attendus
             "2019, 1.0, 8",
             //Annee 2032, annee bissextile debutant un jeudi, mi-temps, 6 Rtt attendus
-    		"2032, 0.5, 11",
+    		"2032, 0.5, 6",
     		//annee 2044, annee bissextile debutant un vendredi, mi-temps, 5 Rtt attendus
-        	"2044, 0.5, 9",
+        	"2044, 0.5, 5",
         	//annee 2021, annee standard debutant un vendredi, mi-temps, 5 Rtt attendus
-        	"2021, 0.5, 10",
+        	"2021, 0.5, 5",
         	//annee , annee standard debutant un samedi, mi-temps, 5 Rtt attendus
-            "2022, 0.5, 10",
+            "2022, 0.5, 5",
         	//annee 2019, annee standard, mi-temps, 4 Rtt attendus
-            "2019, 0.5, 8",
+            "2019, 0.5, 4",
     })
 	public void getNbRttTest(Integer selecteurAnnee, Double tempsPartiel, Integer resultatAttendu) {
 		//Given

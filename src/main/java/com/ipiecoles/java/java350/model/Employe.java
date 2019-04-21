@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -158,7 +161,12 @@ public class Employe {
 
     //Augmenter salaire
     public void augmenterSalaire(double pourcentage){
-    	this.salaire = (1 + (pourcentage/100))*this.getSalaire();
+    	DecimalFormat df = new DecimalFormat("#.##");
+    	df.setRoundingMode(RoundingMode.HALF_UP);
+    	Double salaireAugmente = (1 + (pourcentage/100))*this.getSalaire();
+    	String salaireArrondi = df.format(salaireAugmente);
+    	
+    	this.salaire = Double.parseDouble(salaireArrondi);	
     }
 
     public Long getId() {
