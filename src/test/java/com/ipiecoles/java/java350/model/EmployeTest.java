@@ -18,6 +18,8 @@ public class EmployeTest {
             "1000.0, 10.0, 1100.0",
             "1000.0, 1.0, 1010.0",
             "1000.0, 0.1, 1001.0",
+            "1000.0, 0.2, 1002.0",
+            "1000.0, 0.3, 1003.0",
             "1000.0, 5, 1050.0",
             "1000.0, 110, 2100.0",
             "1000.0, 200, 3000.0"
@@ -46,7 +48,17 @@ public class EmployeTest {
         	//annee , annee standard debutant un samedi, temps plein, 10 Rtt attendus
             "2022, 1.0, 10",
         	//annee 2019, annee standard, temps plein, 8 Rtt attendus
-            "2019, 1.0, 8"
+            "2019, 1.0, 8",
+            //Annee 2032, annee bissextile debutant un jeudi, mi-temps, 6 Rtt attendus
+    		"2032, 0.5, 11",
+    		//annee 2044, annee bissextile debutant un vendredi, mi-temps, 5 Rtt attendus
+        	"2044, 0.5, 9",
+        	//annee 2021, annee standard debutant un vendredi, mi-temps, 5 Rtt attendus
+        	"2021, 0.5, 10",
+        	//annee , annee standard debutant un samedi, mi-temps, 5 Rtt attendus
+            "2022, 0.5, 10",
+        	//annee 2019, annee standard, mi-temps, 4 Rtt attendus
+            "2019, 0.5, 8",
     })
 	public void getNbRttTest(Integer selecteurAnnee, Double tempsPartiel, Integer resultatAttendu) {
 		//Given
