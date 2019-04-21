@@ -16,9 +16,11 @@ public class EmployeTest {
             "0.0, 10.0, 0",
             "0.0, 0.0, 0",
             "1000.0, 10.0, 1100.0",
+            "1000.0, 1.0, 1010.0",
             "1000.0, 0.1, 1001.0",
             "1000.0, 5, 1050.0",
-            "1000.0, 110, 2100.0"
+            "1000.0, 110, 2100.0",
+            "1000.0, 200, 3000.0"
     })
     public void augmenterSalaireTest(Double salaire, Double pourcentage, Double resultatAttendu) throws Exception {
     	//Given
