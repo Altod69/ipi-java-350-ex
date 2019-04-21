@@ -161,11 +161,18 @@ public class Employe {
 
     //Augmenter salaire
     public void augmenterSalaire(double pourcentage){
+    	//definir un format de décimal en limitant à 2 chiffres après la virgule
     	DecimalFormat df = new DecimalFormat("#.##");
+    	//On arrondie à la valeur supérieur du format défini au dessus
     	df.setRoundingMode(RoundingMode.HALF_UP);
+    	
+    	//Calcul du de l'augmentation de salaire en fonction du pourcentage du salaire actuel
     	Double salaireAugmente = (1 + (pourcentage/100))*this.getSalaire();
+    	
+    	//Conversion en string pour passer le format de décimal voulu
     	String salaireArrondi = df.format(salaireAugmente);
     	
+    	//Enregistrement de la valeur dans l'attribut salaire après "parsage" de la String en Double
     	this.salaire = Double.parseDouble(salaireArrondi);	
     }
 
