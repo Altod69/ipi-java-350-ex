@@ -73,20 +73,15 @@ public class Employe {
      *
      * @return le nombre de jours de RTT
      */
-    public Integer getNbRtt(){
-        return getNbRtt(LocalDate.now());
-    }
-
-	public Integer getNbRtt(LocalDate d){
-    	//Nombre de jours dans l'année. Si l'année est bissextile, i1 vaut 366 sinon vaut 365. 
+	 public Integer getNbRtt(LocalDate d){
+    	//Nombre de jours dans l'année. Si l'année est bissextile, nbJoursAnnee vaut 366 sinon vaut 365. 
         int nbJoursAnnee = d.isLeapYear() ? 366 : 365;
         
-        //Nombres de jours non travaillés sur l'année(samedi et dimanche)
+        //Somme des samedi et dimanche sur l'annee
         int nbJoursNonOuvres = 104;
         
-        
+        //Controle sur le premier jour de l'annee passée en paramètre
         switch (LocalDate.of(d.getYear(),1,1).getDayOfWeek()){
-        	
         	//Si c'est une année bissextile, ajoute 1 aux jours non travaillés si le premier jour de l'année est un jeudi
             case THURSDAY: 
             	if(d.isLeapYear()) {
@@ -111,17 +106,9 @@ public class Employe {
         }
         
         //Récupère la liste des jours fériés pour l'année en cours. La liste est paramétrée dans la classe Entreprise.
-        //Parcours la liste de jour fériés. Ajoute un jour à monInt pour chaque jour férié n'étant pas un samedi ou un Dimanche
+        //Parcours la liste de jour fériés. Ajoute 1 à nbJoursFeriesJoursOuvres pour chaque jour férié n'étant pas un samedi ou un Dimanche
         int nbJoursFeriesJoursOuvres = (int) Entreprise.joursFeries(d).stream().filter(localDate -> localDate.getDayOfWeek().getValue() <= DayOfWeek.FRIDAY.getValue()).count();
         
-        //Retourne: 
-        //Le nombre de jour de l'année("i1") 
-        //- plafond max forfait jour(nombre de jour obligatoirement travaillés par le salarié)
-        //- var(??)
-        //- nombres de congés
-        //- nombre de jours fériés comptabilisés(tombant sur un jour ouvré,"monInt")
-        //multiplié par la valeur de temps partiel du salarié
-        //Math.ceil arrondi le résultat de la multiplication à l'entier supérieur
         return (int) Math.ceil((nbJoursAnnee - Entreprise.NB_JOURS_MAX_FORFAIT - nbJoursNonOuvres - Entreprise.NB_CONGES_BASE - nbJoursFeriesJoursOuvres) * tempsPartiel);
     }
 
@@ -161,12 +148,12 @@ public class Employe {
 
     //Augmenter salaire
     public void augmenterSalaire(double pourcentage){
-    	//definir un format de décimal en limitant à 2 chiffres après la virgule
+    	//definition d'un format de décimal en limitant à 2 chiffres après la virgule
     	DecimalFormat df = new DecimalFormat("#.##");
-    	//On arrondie à la valeur supérieur du format défini au dessus
+    	//arrondie à la valeur supérieur du format défini au dessus
     	df.setRoundingMode(RoundingMode.HALF_UP);
     	
-    	//Calcul du de l'augmentation de salaire en fonction du pourcentage du salaire actuel
+    	//Calcul de l'augmentation de salaire en fonction du pourcentage du salaire actuel
     	Double salaireAugmente = (1 + (pourcentage/100))*this.getSalaire();
     	
     	//Conversion en string pour passer le format de décimal voulu

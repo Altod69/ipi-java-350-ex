@@ -141,4 +141,15 @@ public class EmployeServiceTest {
         EmployeException e = Assertions.assertThrows(EmployeException.class, () -> employeService.embaucheEmploye(nom, prenom, poste, niveauEtude, tempsPartiel));
         Assertions.assertEquals("Limite des 100000 matricules atteinte !", e.getMessage());
     }
+    
+    @Test
+    public void testCalculPerformanceCommercialeMatriculeNonCommercial() throws EmployeException {
+    	//Given
+    	String matricule = "T00000";
+    	Long caTraite = 100000L;
+    	Long objectifCa = 100000L;
+    	//When/then
+    	EmployeException e = Assertions.assertThrows(EmployeException.class, () -> employeService.calculPerformanceCommercial(matricule, caTraite, objectifCa));
+    	Assertions.assertEquals("Le matricule ne peut être null et doit commencer par un C !", e.getMessage());
+    }
 }
