@@ -154,6 +154,19 @@ public class EmployeServiceTest {
     }
     
     @Test
+    public void testCalculPerformanceCommercialeMatriculeEmployeRepoNull() throws EmployeException {
+    	//Given
+    	String matricule = "C00000";
+    	Long caTraite = 100000L;
+    	Long objectifCa = 100000L;
+    	when(employeRepository.findByMatricule("C00000")).thenReturn(null);
+    	
+    	//When/then
+    	EmployeException e = Assertions.assertThrows(EmployeException.class, () -> employeService.calculPerformanceCommercial(matricule, caTraite, objectifCa));
+    	Assertions.assertEquals("Le matricule C00000 n'existe pas !", e.getMessage());
+    }
+    
+    @Test
     public void testCalculPerformanceCommercialeMatriculeCaTraiteNull() throws EmployeException {
     	//Given
     	String matricule = "C00000";
