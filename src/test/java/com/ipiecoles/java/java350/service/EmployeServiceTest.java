@@ -209,18 +209,17 @@ public class EmployeServiceTest {
     @Test
     public void testCalculPerformanceCommercialeMatriculeCasNominal() throws EmployeException {
     	//Given
-    	Employe employe = new Employe();
     	String matricule = "C00000";
     	Long caTraite = 120000L;
     	Long objectifCa = 100000L;
-    	employe.setPerformance(0);
-    	when(employeRepository.findByMatricule("C00000")).thenReturn(employe);
-    	when(employeRepository.avgPerformanceWhereMatriculeStartsWith("C")).thenReturn(2.0);
-    	when(employeRepository.save(employe)).thenReturn(employe);
-    	//When/then
-    	ArgumentCaptor<Employe> employeArgumentCaptor = ArgumentCaptor.forClass(Employe.class);
-    	EmployeException e = Assertions.assertThrows(EmployeException.class, () -> employeService.calculPerformanceCommercial(matricule, caTraite, objectifCa));
-    	Assertions.assertEquals(null, e.getMessage());
-    	Assertions.assertEquals(5,employeArgumentCaptor.getValue().getPerformance().intValue());
+        when(employeRepository.findByMatricule("C00000")).thenReturn(new Employe());
+        when(employeRepository.avgPerformanceWhereMatriculeStartsWith("C")).thenReturn(2.0);
+        //When
+        employeService.calculPerformanceCommercial(matricule, caTraite, objectifCa);
+
+        //Then
+        ArgumentCaptor<Employe> employeArgumentCaptor = ArgumentCaptor.forClass(Employe.class);
+        verify(employeRepository, times(1)).save(employeArgumentCaptor.capture());
+        Assertions.assertEquals(6.0, employeArgumentCaptor.getValue().getPerformance().doubleValue());
     }
 }
