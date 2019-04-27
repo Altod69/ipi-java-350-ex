@@ -209,9 +209,12 @@ public class EmployeServiceTest {
     @Test
     public void testCalculPerformanceCommercialeMatriculeCasNominal() throws EmployeException {
     	//Given
+    	Employe employe = new Employe();
     	String matricule = "C00000";
     	Long caTraite = 120000L;
     	Long objectifCa = 100000L;
+    	when(employeRepository.findByMatricule("C00000")).thenReturn(employe);
+    	
     	//When/then
     	EmployeException e = Assertions.assertThrows(EmployeException.class, () -> employeService.calculPerformanceCommercial(matricule, caTraite, objectifCa));
     	Assertions.assertEquals(null, e.getMessage());
