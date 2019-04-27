@@ -217,7 +217,6 @@ public class EmployeServiceTest {
     	
     	//When/then
     	ArgumentCaptor<Employe> employeArgumentCaptor = ArgumentCaptor.forClass(Employe.class);
-    	verify(employeRepository, times(1)).save(employeArgumentCaptor.capture());
         Assertions.assertEquals(4, employeArgumentCaptor.getValue().getPerformance().intValue());
     }
 }
