@@ -215,7 +215,7 @@ public class EmployeServiceTest {
     	Long objectifCa = 100000L;
     	employe.setPerformance(0);
     	when(employeRepository.avgPerformanceWhereMatriculeStartsWith("C")).thenReturn(2.0);
-    	
+    	when(employeRepository.save(employe)).thenReturn(employe);
     	//When/then
     	ArgumentCaptor<Employe> employeArgumentCaptor = ArgumentCaptor.forClass(Employe.class);
         verify(employeRepository, times(1)).save(employeArgumentCaptor.capture());
