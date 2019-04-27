@@ -214,15 +214,8 @@ public class EmployeServiceTest {
     	Long caTraite = 120000L;
     	Long objectifCa = 100000L;
     	employe.setPerformance(0);
-    	when(employeRepository.avgPerformanceWhereMatriculeStartsWith("C")).thenReturn(2.0);
-    	
-    	
     	//When/then
-    	
-    	ArgumentCaptor<Employe> employeArgumentCaptor = ArgumentCaptor.forClass(Employe.class);
-    	verify(employeRepository, times(1)).save(employeArgumentCaptor.capture());
     	EmployeException e = Assertions.assertThrows(EmployeException.class, () -> employeService.calculPerformanceCommercial(matricule, caTraite, objectifCa));
     	Assertions.assertEquals(null, e.getMessage());
-    	Assertions.assertEquals(4, employeArgumentCaptor.getValue().getPerformance().intValue());
     }
 }
