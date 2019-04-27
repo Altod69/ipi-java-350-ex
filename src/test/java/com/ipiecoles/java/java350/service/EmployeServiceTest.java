@@ -210,7 +210,7 @@ public class EmployeServiceTest {
     public void testCalculPerformanceCommercialeMatriculeCasNominal() throws EmployeException {
     	//Given
     	String matricule = "C00000";
-    	Long caTraite = 120000L;
+    	Long caTraite = 130000L;
     	Long objectifCa = 100000L;
         when(employeRepository.findByMatricule("C00000")).thenReturn(new Employe());
         when(employeRepository.avgPerformanceWhereMatriculeStartsWith("C")).thenReturn(2.0);
