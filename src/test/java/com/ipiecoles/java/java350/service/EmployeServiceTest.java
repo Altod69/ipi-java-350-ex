@@ -213,9 +213,11 @@ public class EmployeServiceTest {
     	String matricule = "C00000";
     	Long caTraite = 120000L;
     	Long objectifCa = 100000L;
-    	when(employeRepository.findByMatricule("C00000")).thenReturn(employe);
+    	employe.setPerformance(0);
+    	
     	//When/then
-    	EmployeException e = Assertions.assertThrows(EmployeException.class, () -> employeService.calculPerformanceCommercial(matricule, caTraite, objectifCa));
-    	Assertions.assertNull(e.getMessage());
+    	ArgumentCaptor<Employe> employeArgumentCaptor = ArgumentCaptor.forClass(Employe.class);
+    	verify(employeRepository, times(1)).save(employeArgumentCaptor.capture());
+        Assertions.assertEquals(4, employeArgumentCaptor.getValue().getPerformance().intValue());
     }
 }
