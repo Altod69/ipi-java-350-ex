@@ -215,7 +215,7 @@ public class EmployeServiceTest {
     	"C00000, 106000, 100000, 2",
         "C00000, 130000, 100000, 6"         
     })
-    public void testCalculPerformanceCommercialeMatriculeCasNominal(String matricule, Long caTraite, Long objectifCa, Double resultatAttendu) throws EmployeException {
+    public void testCalculPerformanceCommercialeMatriculeCasNominal(String matricule, Long caTraite, Long objectifCa, Integer resultatAttendu) throws EmployeException {
     	//Given
         when(employeRepository.findByMatricule("C00000")).thenReturn(new Employe());
         when(employeRepository.avgPerformanceWhereMatriculeStartsWith("C")).thenReturn(2.0);
