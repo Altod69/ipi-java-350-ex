@@ -56,4 +56,49 @@ public class EmployeRepositoryTest {
         //Then
         Assertions.assertEquals("40325", lastMatricule);
     }
+    
+    @Test
+    public void testAvgPerformanceWhereMatriculeStartsWithT(){
+        //Given
+        employeRepository.save(new Employe("Kenobi", "ObiWan", "T00001", LocalDate.now(), Entreprise.SALAIRE_BASE, 1, 1.0));
+        employeRepository.save(new Employe("Windu", "Mace", "T00002", LocalDate.now(), Entreprise.SALAIRE_BASE, 5, 1.0));
+        employeRepository.save(new Employe("Maitre", "Kylo", "T00003", LocalDate.now(), Entreprise.SALAIRE_BASE, 2, 1.0));
+        employeRepository.save(new Employe("Maitre", "Kylo", "T00003", LocalDate.now(), Entreprise.SALAIRE_BASE, 2, 1.0));
+
+        //When
+        Double perfMoy = employeRepository.avgPerformanceWhereMatriculeStartsWith("T");
+
+        //Then
+        Assertions.assertEquals(2.5, perfMoy.doubleValue());
+    }
+    
+    @Test
+    public void testAvgPerformanceWhereMatriculeStartsWithC(){
+        //Given
+        employeRepository.save(new Employe("Legris", "Gandalf", "C00001", LocalDate.now(), Entreprise.SALAIRE_BASE, 2, 1.0));
+        employeRepository.save(new Employe("Sacquet", "Frodon", "C00002", LocalDate.now(), Entreprise.SALAIRE_BASE, 5, 1.0));
+        employeRepository.save(new Employe("Gamegie", "Sam", "C00003", LocalDate.now(), Entreprise.SALAIRE_BASE, 6, 1.0));
+        employeRepository.save(new Employe("Le Vilain", "Sauron", "C00003", LocalDate.now(), Entreprise.SALAIRE_BASE, 1, 1.0));
+
+        //When
+        Double perfMoy = employeRepository.avgPerformanceWhereMatriculeStartsWith("C");
+
+        //Then
+        Assertions.assertEquals(3.5, perfMoy.doubleValue());
+    }
+    
+    @Test
+    public void testAvgPerformanceWhereMatriculeStartsWithM(){
+        //Given
+        employeRepository.save(new Employe("Parker", "Peter", "M00001", LocalDate.now(), Entreprise.SALAIRE_BASE, 1, 1.0));
+        employeRepository.save(new Employe("Wayne", "Bruce", "M00002", LocalDate.now(), Entreprise.SALAIRE_BASE, 1, 1.0));
+        employeRepository.save(new Employe("Kent", "Clark", "M00003", LocalDate.now(), Entreprise.SALAIRE_BASE, 4, 1.0));
+        employeRepository.save(new Employe("Stark", "Tony", "M00003", LocalDate.now(), Entreprise.SALAIRE_BASE, 2, 1.0));
+
+        //When
+        Double perfMoy = employeRepository.avgPerformanceWhereMatriculeStartsWith("M");
+
+        //Then
+        Assertions.assertEquals(2.0, perfMoy.doubleValue());
+    }
 }
