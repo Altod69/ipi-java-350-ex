@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -206,12 +208,15 @@ public class EmployeServiceTest {
     	Assertions.assertEquals("L'objectif de chiffre d'affaire ne peut être négatif ou null !", e.getMessage());
     }
     
-    @Test
-    public void testCalculPerformanceCommercialeMatriculeCasNominal() throws EmployeException {
+    @ParameterizedTest
+    @CsvSource({
+    	"C00000, 82000, 100000, 1.0",
+    	"C00000, 96000, 100000, 1.0",
+    	"C00000, 106000, 100000, 2.0",
+        "C00000, 130000, 100000, 6.0"         
+    })
+    public void testCalculPerformanceCommercialeMatriculeCasNominal(String matricule, Long caTraite, Long objectifCa, Double resultatAttendu) throws EmployeException {
     	//Given
-    	String matricule = "C00000";
-    	Long caTraite = 130000L;
-    	Long objectifCa = 100000L;
         when(employeRepository.findByMatricule("C00000")).thenReturn(new Employe());
         when(employeRepository.avgPerformanceWhereMatriculeStartsWith("C")).thenReturn(2.0);
         //When
@@ -220,6 +225,6 @@ public class EmployeServiceTest {
         //Then
         ArgumentCaptor<Employe> employeArgumentCaptor = ArgumentCaptor.forClass(Employe.class);
         verify(employeRepository, times(1)).save(employeArgumentCaptor.capture());
-        Assertions.assertEquals(6.0, employeArgumentCaptor.getValue().getPerformance().doubleValue());
+        Assertions.assertEquals(resultatAttendu, employeArgumentCaptor.getValue().getPerformance());
     }
 }
