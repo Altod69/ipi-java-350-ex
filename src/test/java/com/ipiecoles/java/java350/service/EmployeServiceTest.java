@@ -210,10 +210,10 @@ public class EmployeServiceTest {
     
     @ParameterizedTest
     @CsvSource({
-    	"C00000, 82000, 100000, 1.0",
-    	"C00000, 96000, 100000, 1.0",
-    	"C00000, 106000, 100000, 2.0",
-        "C00000, 130000, 100000, 6.0"         
+    	"C00000, 82000, 100000, 1",
+    	"C00000, 96000, 100000, 1",
+    	"C00000, 106000, 100000, 2",
+        "C00000, 130000, 100000, 6"         
     })
     public void testCalculPerformanceCommercialeMatriculeCasNominal(String matricule, Long caTraite, Long objectifCa, Double resultatAttendu) throws EmployeException {
     	//Given
